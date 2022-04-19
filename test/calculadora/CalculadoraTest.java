@@ -21,7 +21,7 @@ public class CalculadoraTest {
 		calc = new Calculadora();
 	}
 	
-	@DisplayName("Testa a soma de dois números")
+	@DisplayName("Testa a soma de dois numeros")
 	@Test
 	public void testSomaDoisNumeros() {
 		int soma = calc.soma(4, 5);		
@@ -38,10 +38,52 @@ public class CalculadoraTest {
 	public void testDivisaoPorZero() {
 		try {
 			int divisao = calc.divisao(8, 0);
-			fail("Exceção não lançada");
-		}catch (ArithmeticException e) {
+			fail("Excecao nao lancada");
+		} catch (ArithmeticException e) {
 			assertEquals("/ by zero", e.getMessage());
-		}		
+		}
+	}
+
+	@Test
+	void testSubtracao(int n1, int n2)
+	{
+		assertEquals(n1-n2, calc.subtracao(n1, n2));
+	}
+
+	@Test
+	void testMultiplicacao(int n1, int n2)
+	{
+		assertEquals(n1*n2, calc.multiplicacao(n1, n2));
+	}
+
+	@Test
+	void testDivisao(int num, int den)
+	{
+		assertEquals(num/den, calc.divisao(num, den));
+	}
+
+	@Test
+	void testSomatoria(int num) // 5 => 0+1+2+3+4+5 = 15
+	{
+
+		if(num > 1)
+		{
+			int n = num;
+			int sum = 0;
+			while (num >= 0) {
+				sum += n;
+				n--;
+			}		
+			assertEquals(sum, calc.somatoria(num));
+		} else {
+			assertEquals(num, calc.somatoria(num));
+		}
+	}
+
+	@Test
+	void testEhPositivo(int num)
+	{
+		assertTrue(calc.ehPositivo(num));
 	}
 	
 	@Test
